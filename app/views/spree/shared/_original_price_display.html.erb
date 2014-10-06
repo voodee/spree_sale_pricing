@@ -15,7 +15,7 @@
   </span>
 </span>
 
-<% if product.master.msrp.present? %>
+<% if product.master.msrp.present? && (product.master.msrp.to_f > 0) %>
   <span class="save-percent">
     Save <%= discount_percentage(product) %>
   </span>
