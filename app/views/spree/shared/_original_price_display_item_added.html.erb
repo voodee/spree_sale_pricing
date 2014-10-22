@@ -1,8 +1,8 @@
-<% if item_added.variant.product.msrp.present? && discount_percentage(item_added.variant) != '0%' %>
+<% if item_added.variant.msrp.present? && discount_percentage_variant(item_added.variant) != '0%'%>
   <span>
     <strong>
       <span class="line-through">
-      <%= number_to_currency(product.master.msrp) %>
+      <%= number_to_currency(item_added.product.master.msrp) %>
       </span>
       &nbsp;
     </strong>
@@ -13,7 +13,7 @@
     </span>
   </span>
   <span class="save-percent">
-    Save <%= discount_percentage(item_added.variant) %>
+    Save <%= discount_percentage_variant(item_added.variant) %>
   </span>
 <% else %>
   <span class="list-price">
