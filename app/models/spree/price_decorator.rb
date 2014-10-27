@@ -2,11 +2,11 @@ Spree::Price.class_eval do
 
   has_many :sale_prices
   
-  def put_on_sale value, params={}
+  def put_on_sale(value, params={})
     new_sale(value, params).save
   end
 
-  def new_sale value, params={}
+  def new_sale(value, params={})
     calculator_type = params[:calculator_type] || Spree::Calculator::DollarAmountSalePriceCalculator.new
     start_at = params[:start_at] || Time.now
     end_at = params[:end_at] || nil
@@ -27,6 +27,14 @@ Spree::Price.class_eval do
     sale_prices.present? ? first_sale(sale_prices) : nil
   end
   alias :next_current_sale :next_active_sale
+
+  def display_original_price
+    Spree::Money.new(self[:amount] || 0, { currency: currency })
+  end
+
+  def display_sale_price
+    Spree::Money.new(amount || 0, { currency: currency })
+  end
 
   def sale_price
     on_sale? ? active_sale.price : nil
