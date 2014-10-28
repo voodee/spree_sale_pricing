@@ -7,9 +7,7 @@ Spree::Product.class_eval do
 
   delegate_belongs_to :master, :active_sale_in, :current_sale_in, :next_active_sale_in, :next_current_sale_in,
                       :sale_price_in, :on_sale_in?, :original_price_in, :discount_percent_in, :sale_price,
-                      :original_price, :on_sale?
-
-
+                      :original_price, :on_sale?, :display_original_price, :display_sale_price
 
   # TODO also accept a class reference for calculator type instead of only a string
   def put_on_sale value, params={}
