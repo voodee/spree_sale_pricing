@@ -1,12 +1,5 @@
 <% if variant.msrp.present? && discount_percentage_variant(variant) != '0%' %>
-  <span>
-    <strong>
-      <span class="line-through">
-      <%= number_to_currency(variant.msrp) %>
-      </span>
-      &nbsp;
-    </strong>
-  </span>
+  <span class="line-through"><strong><%= number_to_currency(variant.msrp) %></strong></span>
   <span class="sale-price">
     <span class="price selling" itemprop="price">
       <strong><%= display_price(variant) %></strong>
