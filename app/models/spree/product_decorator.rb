@@ -1,4 +1,3 @@
-
 Spree::Product.class_eval do
   # Essentially all read values here are delegated to reading the value on the Master variant
   # All write values will write to all variants (including the Master) unless that method's all_variants parameter is set to false, in which case it will only write to the Master variant
