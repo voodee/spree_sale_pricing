@@ -2,7 +2,7 @@
   <span class="line-through"><strong><%= number_to_currency(variant.msrp) %></strong></span>
   <span class="sale-price">
     <span class="price selling" itemprop="price">
-      <strong><%= display_price(variant) %></strong>
+      <strong><%= variant.display_price %></strong>
     </span>
   </span>
   <span class="save-percent">
@@ -10,6 +10,6 @@
   </span>
 <% else %>
   <span class="list-price">
-    <strong><%= display_price(variant) %></strong>
+    <strong><%= variant.display_price %></strong>
   </span>
 <% end %>

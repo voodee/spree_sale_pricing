@@ -8,7 +8,7 @@ end
 
 def discount_percentage_variant(variant)
   if variant.msrp.present? && (variant.msrp.to_f > 0)
-    "#{((1 - variant.price.to_f / variant.msrp.to_f) * 100).round}%"
+    "#{((1 - variant.price.amount.to_f / variant.msrp.to_f) * 100).round}%"
   else
     return '0%'
   end

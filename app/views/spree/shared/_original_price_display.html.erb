@@ -3,7 +3,7 @@
   </span>
   <span class="sale-price">
     <span class="price selling" itemprop="price">
-      <strong><%= display_price(product) %></strong>
+      <strong><%= product.display_price %></strong>
     </span>
   </span>
   <span class="save-percent">
@@ -11,6 +11,6 @@
   </span>
 <% else %>
   <span class="list-price">
-    <strong><%= display_price(product) %></strong>
+    <strong><%= product.display_price %></strong>
   </span>
 <% end %>
