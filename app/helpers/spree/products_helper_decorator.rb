@@ -8,7 +8,8 @@ end
 
 def discount_percentage_variant(variant)
   if variant.msrp.present? && (variant.msrp.to_f > 0)
-    "#{((1 - variant.price.to_f / variant.msrp.to_f) * 100).round}%"
+    # this check is because of a oddity in our elasticsearch gem. we should fix it
+    "#{((1 - (variant.price.instance_of?(BigDecimal) ? variant.price.to_f : variant.price.amount.to_f) / variant.msrp.to_f) * 100).round}%"
   else
     return '0%'
   end
