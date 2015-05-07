@@ -9,6 +9,10 @@ module SpreeSalePricing
       g.test_framework :rspec
     end
 
+    initializer "spree.register.msrp_calculators", :after => 'spree.register.calculators' do |app|
+      app.config.spree.calculators.shipping_methods << Spree::Calculator::PercentOnLineItemMsrp
+    end
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
