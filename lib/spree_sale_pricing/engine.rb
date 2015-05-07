@@ -10,7 +10,7 @@ module SpreeSalePricing
     end
 
     initializer "spree.register.msrp_calculators", :after => 'spree.register.calculators' do |app|
-      app.config.spree.calculators.shipping_methods << Spree::Calculator::PercentOnLineItemMsrp
+      Spree::Promotion::Actions::CreateItemAdjustments.calculators << Spree::Calculator::PercentOnLineItemMsrp
     end
 
     def self.activate
