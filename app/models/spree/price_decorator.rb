@@ -8,6 +8,16 @@ Spree::Price.class_eval do
   alias :create_sale :put_on_sale
 
   def new_sale(value, calculator_type = "Spree::Calculator::DollarAmountSalePriceCalculator", start_at = Time.now, end_at = nil, enabled = true)
+    if start_at.blank?
+      start_at = Time.now.in_time_zone('Mountain Time (US & Canada)').midnight
+    else
+      start_at = Time.zone.parse(start_at.to_s).in_time_zone('Mountain Time (US & Canada)').midnight
+    end
+    if end_at.blank?
+      end_at = nil
+    else
+      end_at = Time.zone.parse(end_at.to_s).in_time_zone('Mountain Time (US & Canada)').midnight
+    end
     sale_price = sale_prices.new({ value: value, start_at: start_at, end_at: end_at, enabled: enabled })
     sale_price.calculator_type = calculator_type
     sale_price
