@@ -27,6 +27,14 @@ Spree::Variant.class_eval do
     Spree::Price.new variant_id: self.id, currency: currency, amount: price_in(currency).sale_price
   end
 
+  def discounted?
+    begin
+      self.price < self.msrp
+    rescue
+      false
+    end
+  end
+
   def discount_percent_in(currency)
     price_in(currency).discount_percent
   end
