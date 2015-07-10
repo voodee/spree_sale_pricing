@@ -39,6 +39,18 @@ Spree::Variant.class_eval do
     price_in(currency).discount_percent
   end
 
+  # Returns a String with the discounted percentage between #price and #msrp.
+  def display_discount
+    price = self.price.respond_to?(:to_f) ? self.price.to_f : self.price.amount.to_f
+    msrp = self.msrp.try(:to_f)
+
+    if msrp && self.price && (msrp > price)
+      "#{((1 - price / msrp) * 100).round}"
+    else
+      '0'
+    end
+  end
+
   def on_sale_in?(currency)
     price_in(currency).on_sale?
   end
