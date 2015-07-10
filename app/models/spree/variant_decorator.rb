@@ -33,7 +33,7 @@ Spree::Variant.class_eval do
       price = self.price.respond_to?(:to_f) ? self.price.to_f : self.price.amount.to_f
       msrp = self.msrp.try(:to_f)
 
-      msrp && self.price && (price * 100.0 / msrp).round > 0
+      msrp && self.price && ((1 - price / msrp) * 100).round > 0
     rescue
       false
     end
