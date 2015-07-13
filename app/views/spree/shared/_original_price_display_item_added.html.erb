@@ -1,4 +1,4 @@
-<% if item_added.variant.msrp.present? && discount_percentage_variant(item_added.variant) != '0%'%>
+<% if item_added.variant.msrp.present? && discount_percentage_variant(item_added.variant) != '0'%>
   <span class="line-through"><strong><%= number_to_currency(item_added.product.master.msrp) %></strong></span>
   </span>
   <span class="sale-price">
@@ -7,7 +7,7 @@
     </span>
   </span>
   <span class="save-percent">
-    Save <%= discount_percentage_variant(item_added.variant) %>
+    <%= Spree.t(:save) %> <%= discount_percentage_variant(item_added.variant) %>%
   </span>
 <% else %>
   <span class="list-price">
