@@ -2,6 +2,7 @@ module Spree
   module Admin
     class SalePricesController < BaseController
       before_filter :load_product_and_variant
+      after_filter :update_product, only: [:create, :destroy]
       respond_to :js, :html
 
       def index
@@ -36,6 +37,10 @@ module Spree
       # Sale price params
       def sale_price_params
         params.require(:sale_price).permit(:id, :value, :start_at, :end_at, :enabled)
+      end
+
+      def update_product
+        @product.touch
       end
 
     end
