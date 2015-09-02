@@ -27,8 +27,29 @@ Spree::Variant.class_eval do
     Spree::Price.new variant_id: self.id, currency: currency, amount: price_in(currency).sale_price
   end
 
+  # Returns true if the product is discounted by an amount that rounds to at least 1%
+  def discounted?
+    begin
+      price = self.price.respond_to?(:to_f) ? self.price.to_f : self.price.amount.to_f
+      msrp = self.msrp.try(:to_f)
+
+      msrp && self.price && ((1 - price / msrp) * 100).round > 0
+    rescue
+      false
+    end
+  end
+
   def discount_percent_in(currency)
     price_in(currency).discount_percent
+  end
+
+  # Returns a String with the discounted percentage between #price and #msrp.
+  def display_discount
+    if discounted?
+      "#{((1 - price / msrp) * 100).round}"
+    else
+      '0'
+    end
   end
 
   def on_sale_in?(currency)

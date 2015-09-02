@@ -1,4 +1,4 @@
-<% if product.master.msrp.present? && discount_percentage(product) != '0%' %>
+<% if product.master.msrp.present? && discount_percentage(product) != '0' %>
   <span class="sale-price">
     <span class="price selling" itemprop="price">
       <strong><%= product.display_price %></strong>
