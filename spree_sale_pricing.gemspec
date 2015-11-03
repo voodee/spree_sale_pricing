@@ -16,11 +16,12 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.3.5.beta'
 
-  s.add_development_dependency 'capybara', '1.0.1'
+  s.add_dependency 'spree_core', '~> 3.0.0'
+
+  s.add_development_dependency 'capybara'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.7'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'sqlite3'
 end
